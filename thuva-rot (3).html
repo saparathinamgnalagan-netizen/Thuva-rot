@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thuva Rot | Reliable Rides</title>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:  #FFD600;
+      --black:   #0E0E0E;
+      --white:   #FAFAF5;
+      --green:   #25D366;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--yellow);
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 4px solid var(--black);
+    }
+    .logo-text {
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: 1.65rem;
+      color: var(--black);
+      letter-spacing: 0.05em;
+    }
+    .logo-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--black);
+      opacity: 0.55;
+      margin-top: -4px;
+    }
+    .header-badge {
+      background: var(--black);
+      color: var(--yellow);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .live-dot {
+      width: 7px; height: 7px;
+      background: #2ECC71;
+      border-radius: 50%;
+      animation: blink 1.4s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%; right: -15%;
+      width: 70%; height: 130%;
+      background: var(--yellow);
+      transform: skewX(-8deg);
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(175deg, rgba(14,14,14,0.1) 0%, rgba(14,14,14,0.98) 65%),
+        url('https://images.unsplash.com/photo-1506461883276-594a12b11cf3?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero-word {
+      position: absolute;
+      bottom: -0.1em; right: -0.05em;
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: clamp(7rem, 38vw, 22rem);
+      line-height: 1;
+      color: var(--yellow);
+      opacity: 0.04;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem 1.5rem 2.5rem;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,214,0,0.12);
+      border: 1px solid rgba(255,214,0,0.3);
+      color: var(--yellow);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    h1 {
+      font-family: 'Black Han Sans', sans-serif;
+      font-size: clamp(3.2rem, 16vw, 6rem);
+      line-height: 0.92;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+      animation: fadeUp 0.5s 0.08s ease both;
+    }
+    h1 .accent { color: var(--yellow); display: block; }
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(250,250,245,0.55);
+      line-height: 1.6;
+      margin: 0.9rem 0 2rem;
+      max-width: 320px;
+      animation: fadeUp 0.5s 0.16s ease both;
+    }
+
+    /* CTA BUTTONS */
+    .cta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      animation: fadeUp 0.5s 0.24s ease both;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      border-radius: 16px;
+      padding: 1.1rem 1.4rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-inner { display: flex; align-items: center; gap: 0.75rem; }
+    .btn-icon { font-size: 1.6rem; line-height: 1; }
+    .btn-label { display: flex; flex-direction: column; }
+    .btn-title { line-height: 1.1; }
+    .btn-hint {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      opacity: 0.65;
+      text-transform: uppercase;
+      font-family: 'Barlow', sans-serif;
+    }
+    .btn-arrow {
+      font-size: 1.3rem;
+      opacity: 0.6;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .btn:hover .btn-arrow { transform: translateX(4px); opacity: 1; }
+
+    .call-btn {
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 0 8px 30px rgba(255,214,0,0.25);
+    }
+    .call-btn:hover { box-shadow: 0 12px 40px rgba(255,214,0,0.4); transform: translateY(-2px); }
+    .call-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; bottom: 0;
+      width: 60%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-20deg);
+      animation: shimmer 3s 1s ease-in-out infinite;
+    }
+    @keyframes shimmer { 0%{left:-100%} 40%,100%{left:130%} }
+
+    .wa-btn {
+      background: #111;
+      border: 1.5px solid rgba(37,211,102,0.3);
+      color: var(--white);
+      box-shadow: 0 8px 30px rgba(37,211,102,0.1);
+    }
+    .wa-btn:hover { border-color: rgba(37,211,102,0.6); box-shadow: 0 12px 40px rgba(37,211,102,0.2); transform: translateY(-2px); }
+    .wa-btn .btn-icon { color: var(--green); }
+
+    /* DIVIDER */
+    .divider {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0 1.5rem; margin: 2.5rem 0 0;
+    }
+    .divider-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+    .divider-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* INFO CARDS */
+    .info-section { padding: 1.5rem 1.5rem 3rem; }
+    .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 1.25rem 1rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover { border-color: rgba(255,214,0,0.25); transform: translateY(-3px); }
+    .card-glow {
+      position: absolute; top: -20px; right: -20px;
+      width: 80px; height: 80px;
+      border-radius: 50%; opacity: 0.07; filter: blur(20px);
+    }
+    .card-emoji { font-size: 1.6rem; display: block; margin-bottom: 0.6rem; line-height: 1; }
+    .card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 800;
+      letter-spacing: 0.04em; color: var(--white);
+      margin-bottom: 0.35rem; text-transform: uppercase;
+    }
+    .card p { font-size: 0.78rem; font-weight: 300; color: rgba(250,250,245,0.45); line-height: 1.5; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 1.5rem; text-align: center; }
+    footer p { font-size: 0.72rem; color: rgba(255,255,255,0.22); letter-spacing: 0.04em; }
+    footer strong {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--yellow); letter-spacing: 0.1em;
+    }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <div class="logo-text">THUVA ROT</div>
+      <div class="logo-sub">Reliable Rides</div>
+    </div>
+    <div class="header-badge">
+      <span class="live-dot"></span>
+      Available Now
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-word">ROT</div>
+    <div class="hero-content">
+      <div class="tag">🛺 Jaffna's #1 Tuk</div>
+      <h1>Fastest<br><span class="accent">Tuk in<br>Town.</span></h1>
+      <p class="hero-sub">Safe, affordable, and always on time. One tap is all it takes.</p>
+
+      <div class="cta-stack">
+        <a href="tel:+94767156605" class="btn call-btn">
+          <div class="btn-inner">
+            <span class="btn-icon">📞</span>
+            <div class="btn-label">
+              <span class="btn-title">Call to Book</span>
+              <span class="btn-hint">076 715 6605</span>
+            </div>
+          </div>
+          <span class="btn-arrow">→</span>
+        </a>
+
+        <a href="https://wa.me/94767156605?text=I%20need%20a%20ride%20from..." class="btn wa-btn">
+          <div class="btn-inner">
+            <span class="btn-icon">💬</span>
+            <div class="btn-label">
+              <span class="btn-title">WhatsApp Us</span>
+              <span class="btn-hint">Reply in seconds</span>
+            </div>
+          </div>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider reveal">
+    <div class="divider-line"></div>
+    <span class="divider-label">Why choose us</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <section class="info-section">
+    <div class="cards-grid">
+      <div class="card reveal" style="transition-delay:0.05s">
+        <div class="card-glow" style="background:var(--yellow)"></div>
+        <span class="card-emoji">📍</span>
+        <h3>Local Expert</h3>
+        <p>Every shortcut, every lane — we know the city cold.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:0.1s">
+        <div class="card-glow" style="background:#4FC3F7"></div>
+        <span class="card-emoji">💰</span>
+        <h3>Best Rates</h3>
+        <p>Honest pricing. No hidden charges. Ever.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:0.15s">
+        <div class="card-glow" style="background:var(--green)"></div>
+        <span class="card-emoji">⚡</span>
+        <h3>Fast Pickup</h3>
+        <p>We're nearby. Average wait: under 5 minutes.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:0.2s">
+        <div class="card-glow" style="background:#BA68C8"></div>
+        <span class="card-emoji">🛡️</span>
+        <h3>Safe Rides</h3>
+        <p>Trusted by hundreds of families daily.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>THUVA ROT</strong>
+    <p style="margin-top:0.4rem">© 2026 Thuva Rot Rides. Quality service guaranteed.</p>
+  </footer>
+
+  <script>
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
